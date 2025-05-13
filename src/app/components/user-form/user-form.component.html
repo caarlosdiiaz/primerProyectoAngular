@@ -1,0 +1,130 @@
+<div class="modal" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Form {{ user.id > 0 ? "Update" : "Create" }} Update</h5>
+        <button type="button" (click)="onOpen()" class="btn-close" data-bd-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+          <div class="">
+            <input
+              placeholder="name"
+              name="name"
+              [(ngModel)]="user.name"
+              class="form-control my-2"
+              required
+              #name="ngModel"
+            />
+
+            @if(name.invalid && (name.dirty || name.touched)) { @if
+            (name.errors!['required']) {
+            <div class="text-danger">The name is required</div>
+            } }
+          </div>
+
+          <div class="">
+            <input
+              placeholder="lastname"
+              name="lastname"
+              [(ngModel)]="user.lastname"
+              class="form-control my-2"
+              required
+              #lastname="ngModel"
+            />
+
+            @if(lastname.invalid && (lastname.dirty || lastname.touched)) { @if
+            (lastname.errors!['required']) {
+            <div class="text-danger">The lastname is required</div>
+            } }
+          </div>
+          <div class="">
+            <input
+              placeholder="username"
+              name="username"
+              [(ngModel)]="user.username"
+              class="form-control my-2"
+              required
+              minlength="8"
+              #username="ngModel"
+            />
+
+            @if(username.invalid && (username.dirty || username.touched)) { @if
+            (username.errors!['required']) {
+            <div class="text-danger">The username is required</div>
+            } @if (username.errors!['minlength']) {
+            <div class="text-danger">
+              The username requires min 8 characters
+            </div>
+            } }
+          </div>
+
+          <div class="">
+            <input
+              placeholder="email"
+              name="email"
+              [(ngModel)]="user.email"
+              class="form-control my-2"
+              required
+              email
+              type="email"
+              #email="ngModel"
+            />
+
+            @if(email.invalid && (email.dirty || email.touched)) { @if
+            (email.errors!['required']) {
+            <div class="text-danger">The e-mail is required</div>
+            } @if (email.errors!['email']) {
+            <div class="text-danger">The e-mail hasn't the true format</div>
+            } }
+          </div>
+
+          <div class="">
+            <input
+              placeholder="password"
+              type="password"
+              name="password"
+              [(ngModel)]="user.password"
+              class="form-control my-2"
+              required
+              minlength="6"
+              #password="ngModel"
+            />
+
+            @if(password.invalid && (password.dirty || password.touched)) { @if
+            (password.errors!['required']) {
+            <div class="text-danger">The password is required</div>
+            } @if (password.errors!['minlength']) {
+            <div class="text-danger">
+              The password requires min 6 characters
+            </div>
+            } }
+          </div>
+
+          <div class="">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="userForm.invalid"
+            >
+              {{ user.id > 0 ? "Update" : "Create" }}
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary m-2"
+              (click)="onClear(userForm)"
+            >
+              Clear
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" data-bd-dismiss="modal"
+        (click)="onOpen()">Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
