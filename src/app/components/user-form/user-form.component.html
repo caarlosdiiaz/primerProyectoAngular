@@ -1,11 +1,9 @@
-<div class="modal" style="display: block;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Form {{ user.id > 0 ? "Update" : "Create" }} Update</h5>
-        <button type="button" (click)="onOpen()" class="btn-close" data-bd-dismiss="modal"></button>
+<div class="card">
+    <div class="card-content">
+      <div class="card-header">
+        <h5 class="card-title">Form {{ user.id > 0 ? "Update" : "Create" }} user</h5>
       </div>
-      <div class="modal-body">
+      <div class="card-body">
         <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
           <div class="">
             <input
@@ -120,11 +118,5 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-primary" data-bd-dismiss="modal"
-        (click)="onOpen()">Close
-        </button>
-      </div>
     </div>
-  </div>
 </div>
